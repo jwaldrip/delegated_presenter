@@ -1,4 +1,4 @@
-class SimplePresenter::Base < SimpleDelegator
+class DelegatedPresenter::Base < SimpleDelegator
 
   @@presentable = {}
 

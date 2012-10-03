@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in simple_presenter.gemspec
+# Specify your gem's dependencies in delegated_presenter.gemspec
 gemspec

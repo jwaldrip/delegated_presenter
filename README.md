@@ -1,4 +1,4 @@
-# SimplePresenter
+# DelegatedPresenter
 
 TODO: Write a gem description
 
@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'simple_presenter'
+    gem 'delegated_presenter'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install simple_presenter
+    $ gem install delegated_presenter
 
 ## Usage
 
