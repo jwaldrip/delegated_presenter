@@ -1,0 +1,12 @@
+class <%= class_name %>Presenter < SimplePresenter::Base
+
+  # By default this presenter wil try and present a `<%= class_name %>` if it exists.
+  # You can explicitly tell the presenter to present other models using the following syntax:
+
+  # presents MyModel1, MyModel2
+
+  # Add some functionality to your presenter!
+  # The presenter will always look to the model it is presenting for methods and attributes not defined in the presenter.
+  # If you want to override model method, you can always call `presented_model.{method_name}` to access the original method.
+
+end

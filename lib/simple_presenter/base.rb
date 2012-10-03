@@ -24,7 +24,8 @@ class SimplePresenter::Base < SimpleDelegator
   end
 
   def self.inherited(subclass)
-    presentable_class = sublclass.name.gsub(/Presenter$/)
+    presentable_class = subclass.name.gsub(/Presenter$/,'')
+    presentable_class.constantize rescue nil
     subclass.presents presentable_class if Object.const_defined?(presentable_class)
   end
 

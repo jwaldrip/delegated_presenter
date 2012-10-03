@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version         = SimplePresenter::VERSION
   gem.authors         = ["Jason Waldrip"]
   gem.email           = ["jason@waldrip.net"]
-  gem.description     = %q{Simple presenter allows for a simple way for you to present a model to your controller}
-  gem.summary         = %q{TODO: Write a gem summary}
+  gem.description     = %q{Simple presenter allows for a simple way for you to present a model to your views without cluttering up the original model.}
+  gem.summary         = %q{Simple presenter allows for a simple way for you to present a model to your views without cluttering up the original model.}
   gem.homepage        = "http://github.com/jwaldrip/simple_presenter"
 
   gem.files           = `git ls-files`.split($/)

@@ -6,3 +6,5 @@ module SimplePresenter
   autoload :Base
   autoload :Error
 end
+
+require 'simple_presenter/railtie' if defined?(Rails)
