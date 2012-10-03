@@ -2,6 +2,8 @@ class DelegatedPresenter::Base < SimpleDelegator
 
   @@presentable = {}
 
+  alias :presented_model :__getobj__
+
   def initialize(object)
     raise Presenter::NotPresentable, "#{self.presenter_class} cannot present a #{object.class}" unless self.presentable.include?(object.class.name)
     super(object)
