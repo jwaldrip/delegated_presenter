@@ -107,7 +107,7 @@ class DelegatedPresenter::Base < SimpleDelegator
   def hide_methods
     hidden_methods.flatten.each do |i|
       singleton_class.send :define_method, i do |*args|
-        raise DelegatedPresenter::Error::MethodHidden, "Method `#{i} is not exposed."
+        raise DelegatedPresenter::Error::MethodHidden, "Method `#{i} is hidden."
       end
     end
   end
