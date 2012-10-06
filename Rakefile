@@ -23,7 +23,10 @@ end
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new('spec')
 
-task :default => [:spec]
+task :default => ['db:migrate', 'db:test:prepare', :spec]
+
+require File.expand_path('../spec/dummy/config/application', __FILE__)
+Dummy::Application.load_tasks
 
 Bundler::GemHelper.install_tasks
 
