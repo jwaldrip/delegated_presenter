@@ -17,5 +17,13 @@ Gem::Specification.new do |gem|
   gem.test_files      = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths   = ["lib"]
   gem.add_dependency  "activesupport"
+
   gem.add_development_dependency "rspec"
+  gem.add_development_dependency "sqlite3"
+  gem.add_development_dependency "rspec-rails"
+  gem.add_development_dependency "rails"
+  gem.add_development_dependency "factory_girl"
+  gem.add_development_dependency "database_cleaner"
+  gem.add_development_dependency "pry"
+
 end

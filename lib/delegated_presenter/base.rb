@@ -139,7 +139,7 @@ class DelegatedPresenter::Base < SimpleDelegator
   def map_array(array)
     array.map!{ |object| presenter_class.new(object) }
     inherited_methods = presenter_class.instance_methods - DelegatedPresenter::Base.instance_methods
-    inherited_methods.each { |i| presented_model.singleton_class.send(:undef_method, i) }
+    inherited_methods.each { |i| singleton_class.send(:undef_method, i) }
     __setobj__ array
   end
 
