@@ -24,6 +24,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rails"
   gem.add_development_dependency "factory_girl"
   gem.add_development_dependency "database_cleaner"
-  gem.add_development_dependency "pry"
 
 end
