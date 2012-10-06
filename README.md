@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME].png)](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME])
+[![Build Status](https://secure.travis-ci.org/jwaldrip/delegated_presenter.png)](http://travis-ci.org/jwaldrip/delegated_presenter)
 
 # DelegatedPresenter
 
