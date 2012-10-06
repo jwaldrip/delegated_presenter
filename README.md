@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME].png)](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME])
+
 # DelegatedPresenter
 
 DelegatedPresenter gives you an easy way to present objects and collections to your models. It uses ruby's Delegate model so it is lightweight and functional!
