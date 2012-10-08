@@ -23,6 +23,8 @@ end
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new('spec')
 
+ENV["RAILS_ENV"] ||= 'test'
+
 task :default => ['db:migrate', 'db:test:prepare', :spec]
 
 require File.expand_path('../spec/dummy/config/application', __FILE__)
