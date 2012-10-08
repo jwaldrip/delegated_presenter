@@ -5,6 +5,8 @@
 #    If a method is not exposed.
 class DelegatedPresenter::Base < SimpleDelegator
 
+  # Todo: Override as_json!
+
   PRESENTABLE = {}
   HIDDEN_METHODS = {}
   EXPOSED_METHODS = {}
