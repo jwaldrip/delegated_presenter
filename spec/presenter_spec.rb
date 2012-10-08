@@ -18,8 +18,6 @@ describe SampleObjectPresenter do
     SampleObjectPresenter.send :hide, :id
     object = FactoryGirl.create(:sample_object)
     presented_object = SampleObjectPresenter.new(object)
-    require 'pry'
-    binding.pry
     expect { presented_object.id }.to raise_error(DelegatedPresenter::Error::MethodHidden)
   end
 
@@ -27,8 +25,6 @@ describe SampleObjectPresenter do
     SampleObjectPresenter.send :expose, :first_name
     object = FactoryGirl.create(:sample_object)
     presented_object = SampleObjectPresenter.new(object)
-    require 'pry'
-    binding.pry
     expect { presented_object.id }.to raise_error(DelegatedPresenter::Error::MethodNotExposed)
     expect(presented_object.first_name).to be_present
   end

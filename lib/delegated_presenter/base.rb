@@ -59,8 +59,8 @@ class DelegatedPresenter::Base < SimpleDelegator
   # @example Hide methods:
   #     hide :id, :crypted_password, :password_salt
   def self.hide(*hidden_methods)
-    self.hidden_methods[name] ||= []
-    self.hidden_methods[name] += hidden_methods
+    HIDDEN_METHODS[name] ||= []
+    HIDDEN_METHODS[name] += hidden_methods
   end
 
   # @!visibility public
@@ -131,7 +131,7 @@ class DelegatedPresenter::Base < SimpleDelegator
   # Extracts the the models unique methods from the superclass
   # @api private
   def unique_model_methods
-    presented_model.methods - presented_model.class.superclass.instance_methods
+    presented_model.attributes.keys.map(&:to_sym) + (presented_model.methods - presented_model.class.superclass.instance_methods)
   end
 
   # Maps an array of instances to delegated presented instances
