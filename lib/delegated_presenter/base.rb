@@ -25,11 +25,13 @@ class DelegatedPresenter::Base < SimpleDelegator
     else
       raise DelegatedPresenter::Error::NotPresentable, "#{self.presenter_class} cannot present a #{object.class}" unless object_is_presentable?(object)
       __setobj__(object)
+
       if exposed_methods
         expose_methods
       elsif hidden_methods
         hide_methods
       end
+
     end
   end
 
@@ -131,7 +133,8 @@ class DelegatedPresenter::Base < SimpleDelegator
   # Extracts the the models unique methods from the superclass
   # @api private
   def unique_model_methods
-    presented_model.attributes.keys.map(&:to_sym) + (presented_model.methods - presented_model.class.superclass.instance_methods)
+    attributes = presented_model.respond_to?(:attributes) ? presented_model.attributes.keys.map(&:to_sym) : []
+    attributes + (presented_model.methods - presented_model.class.superclass.instance_methods)
   end
 
   # Maps an array of instances to delegated presented instances
