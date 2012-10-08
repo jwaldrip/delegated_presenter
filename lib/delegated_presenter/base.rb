@@ -107,7 +107,7 @@ class DelegatedPresenter::Base < SimpleDelegator
   def hide_methods
     hidden_methods.flatten.each do |i|
       singleton_class.send :define_method, i do |*args|
-        raise DelegatedPresenter::Error::MethodHidden, "Method `#{i} is not exposed."
+        raise DelegatedPresenter::Error::MethodHidden, "Method `#{i} is hidden."
       end
     end
   end
@@ -139,7 +139,7 @@ class DelegatedPresenter::Base < SimpleDelegator
   def map_array(array)
     array.map!{ |object| presenter_class.new(object) }
     inherited_methods = presenter_class.instance_methods - DelegatedPresenter::Base.instance_methods
-    inherited_methods.each { |i| presented_model.singleton_class.send(:undef_method, i) }
+    inherited_methods.each { |i| singleton_class.send(:undef_method, i) }
     __setobj__ array
   end
 

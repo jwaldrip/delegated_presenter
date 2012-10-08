@@ -1,5 +1,7 @@
 # DelegatedPresenter
 
+[![Build Status](https://secure.travis-ci.org/jwaldrip/delegated_presenter.png)](http://travis-ci.org/jwaldrip/delegated_presenter)
+
 DelegatedPresenter gives you an easy way to present objects and collections to your models. It uses ruby's Delegate model so it is lightweight and functional!
 
 ## Installation
