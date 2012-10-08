@@ -47,6 +47,32 @@ class ContactPresenter < DelegatedPresenter::Base
 end
 ```
 
+### Hide or expose methods from the presented model:
+
+There are two helper methods in the presenter.
+
+* ```expose: :method_name, :another_method_name``` will hide all methods except the ones you specify.
+* ```hide: :method_name, :another_method_name``` will only hide the methods you specify.
+
+```ruby
+class ContactPresenter < DelegatedPresenter::Base
+
+  hide :id, :crypted_password
+
+end
+```
+
+or:
+
+```ruby
+class ContactPresenter < DelegatedPresenter::Base
+
+  expose :first_name, :last_name
+
+end
+```
+
+
 ### Use the controller helper
 See: {DelegatedPresenter::PresentsBeforeRendering}
 
@@ -60,6 +86,7 @@ class ContactsController < ApplicationController
 end
 ```
 
+
 If you for any reason need to explicitly define the presenter you may define a ```with: :presenter_name``` option, like so.
 
 ```ruby
@@ -70,7 +97,8 @@ class UsersController < ApplicationController
 end
 ```
 
-Or if you like you can just manually initialize the presenter in your actions.
+
+### Using the Presenter without the controller helper:
 
 ```ruby
 class ContactsController < ApplicationController
