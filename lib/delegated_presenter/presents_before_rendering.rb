@@ -9,7 +9,7 @@ module DelegatedPresenter::PresentsBeforeRendering
   private
 
   # Presents specified instance variables before rendering.
-  def render
+  def render(*args, &block)
     presents_before_rendering.each do |var, options|
       next if (
         options.has_key?(:only) && !Array.wrap(options[:only]).include?(action_name.to_sym)

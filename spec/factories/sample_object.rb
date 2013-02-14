@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :sample_object do
     prefix      "Dr."
     first_name  "John"

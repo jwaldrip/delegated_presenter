@@ -28,7 +28,6 @@ Or install it yourself as:
 
 ```ruby
 class ContactPresenter < DelegatedPresenter::Base
-
   # By default this presenter will try and present a Contact if it exists.
   # You can explicitly tell the presenter to present other models using the following syntax:
 
@@ -45,9 +44,30 @@ class ContactPresenter < DelegatedPresenter::Base
   def full_name
     [prefix, first_name, middle_initial, last_name, suffix].compact.join(' ')
   end
-
 end
 ```
+
+### Hide or expose methods from the presented model:
+
+There are two helper methods in the presenter.
+
+* ```expose: :method_name, :another_method_name``` will hide all methods except the ones you specify.
+* ```hide: :method_name, :another_method_name``` will only hide the methods you specify.
+
+```ruby
+class ContactPresenter < DelegatedPresenter::Base
+  hide :id, :crypted_password
+end
+```
+
+or:
+
+```ruby
+class ContactPresenter < DelegatedPresenter::Base
+  expose :first_name, :last_name
+end
+```
+
 
 ### Use the controller helper
 See: {DelegatedPresenter::PresentsBeforeRendering}
@@ -56,27 +76,24 @@ Use the following to present a model instance or collection with a presenter, by
 
 ```ruby
 class ContactsController < ApplicationController
-
   presents :contact
-
 end
 ```
+
 
 If you for any reason need to explicitly define the presenter you may define a ```with: :presenter_name``` option, like so.
 
 ```ruby
 class UsersController < ApplicationController
-
   presents :user, with: :contact_presenter
-
 end
 ```
 
-Or if you like you can just manually initialize the presenter in your actions.
+
+### Using the Presenter without the controller helper:
 
 ```ruby
 class ContactsController < ApplicationController
-
   def index
     @contacts = ContactPresenter.new Contact.all
   end
@@ -84,9 +101,7 @@ class ContactsController < ApplicationController
   def show
     @contact = ContactPresenter.new Contact.find(params[:id])
   end
-
 end
-
 ```
 
 ## Contributing
