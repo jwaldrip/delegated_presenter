@@ -9,8 +9,4 @@ class SampleObjectPresenter < DelegatedPresenter::Base
   # The presenter will always look to the model it is presenting for methods and attributes not defined in the presenter.
   # If you want to override model method, you can always call `presented_model.{method_name}` to access the original method.
 
-  def full_name
-    [prefix, first_name, middle_name, last_name, suffix].join(' ')
-  end
-
 end

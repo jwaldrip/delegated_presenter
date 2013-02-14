@@ -1,7 +1,5 @@
 class SampleObjectsController < ApplicationController
 
-  presents :instance, :collection
-
   def index
     @collection = SampleObject.all
   end
