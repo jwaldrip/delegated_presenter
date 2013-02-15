@@ -2,30 +2,45 @@ module DelegatedPresenter::PresentsBeforeRendering
   extend ActiveSupport::Concern
 
   included do
-    class_attribute :presents_before_rendering
-    self.presents_before_rendering = {}
+    alias_method_chain :render, :presentation
   end
 
   private
 
+  def presents_before_rendering
+    from_singleton = self.singleton_class.presents_before_rendering
+    from_class = self.class.presents_before_rendering
+    from_singleton.present? ? from_singleton : from_class
+  end
+
   # Presents specified instance variables before rendering.
-  def render(*args, &block)
+  def render_with_presentation(*args, &block)
     presents_before_rendering.each do |var, options|
       next if (
         options.has_key?(:only) && !Array.wrap(options[:only]).include?(action_name.to_sym)
       ) || (
         options.has_key?(:except) && Array.wrap(options[:except]).include?(action_name.to_sym)
       ) || (ivar = instance_variable_get "@#{var}").blank?
+
       object_class = [ivar].flatten.collect(&:class).first.to_s
       presenter = options.fetch(:with, "#{object_class}Presenter").to_s.classify.constantize
       instance_variable_set "@#{var}", presenter.new(ivar)
     end
-    super
+    render_without_presentation(*args, &block)
   end
 
   module ClassMethods
 
+    def presents_before_rendering
+      @presents_before_rendering ||= {} unless name == 'ActionController::Base'
+    end
+
     private
+
+    def inherited_with_presentation(subclass)
+      subclass.instance_variable_set :@presents_before_rendering, presents_before_rendering
+      super
+    end
 
     # @!visibility public
     # Sets up a presenter for instance variables. By default it will try to determine the presenter but this can be overridden via the "*with*" option.

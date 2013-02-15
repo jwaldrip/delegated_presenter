@@ -2,21 +2,29 @@ require 'spec_helper'
 
 describe SampleObjectsController, type: :controller do
 
-  let(:options){ {} }
+  let(:presenter){
+    klass = Class.new(DelegatedPresenter::Base) do
+      presents SampleObject
+    end
+    stub_const("TestPresenter", klass)
+    klass
+  }
+
+  let(:options){ { with: presenter } }
 
   before do
     10.times { FactoryGirl.create(:sample_object) }
     controller.singleton_class.send :presents, :instance, :collection, options
   end
 
-  it 'presents :collection' do
+  it 'presents :collection', focus: true do
     get :index
-    expect(assigns(:collection).presenter_class).to eq(SampleObjectPresenter)
+    expect(assigns(:collection).presenter_class).to eq(presenter)
   end
 
   it 'presents :instance' do
     get :show, { id: 1 }
-    expect(assigns(:instance).presenter_class).to eq(SampleObjectPresenter)
+    expect(assigns(:instance).presenter_class).to eq(presenter)
   end
 
   context 'with options' do

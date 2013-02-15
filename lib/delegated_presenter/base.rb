@@ -66,9 +66,9 @@ class DelegatedPresenter::Base < SimpleDelegator
 
     # @api private
     def inherited(subclass)
-      subclass.instance_variable_set :@presentable, @presentable
-      subclass.instance_variable_set :@hidden_methods, @hidden_methods
-      subclass.instance_variable_set :@exposed_methods, @exposed_methods
+      subclass.instance_variable_set :@presentable, presentable
+      subclass.instance_variable_set :@hidden_methods, hidden_methods
+      subclass.instance_variable_set :@exposed_methods, exposed_methods
       return unless subclass.name.present?
       presentable_class = subclass.name.gsub(/Presenter$/,'')
       presentable_class.constantize rescue nil
